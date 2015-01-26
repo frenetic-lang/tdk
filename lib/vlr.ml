@@ -220,7 +220,7 @@ module Make(V:HashCmp)(L:Lattice)(R:Result) = struct
     (fun r          -> const (g r))
     (fun (v, l) t f -> mk_branch (v,l) t f)
 
-  let sum_generalized f zero x y =
+  let sum_generalized f zero =
     let tbl : (int * int, int) H.t = H.create () in
     let rec sum x y =
        H.find_or_add tbl (x, y) ~default:(fun () -> sum' x y)
@@ -245,7 +245,7 @@ module Make(V:HashCmp)(L:Lattice)(R:Result) = struct
         |  1 -> mk_branch (vy,ly) (sum x ty) (sum x fy)
         |  _ -> assert false
         end
-    in sum x y
+    in sum
 
   let sum = sum_generalized R.sum R.zero
 
