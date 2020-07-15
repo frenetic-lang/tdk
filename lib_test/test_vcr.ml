@@ -14,7 +14,7 @@ end
 module V2 = struct
   type t = X | Y
 
-  let compare = Pervasives.compare
+  let compare = Stdlib.compare
   let hash = function | X -> 0 | Y -> 1
   let to_string = function | X -> "X" | Y -> "Y"
 end
@@ -22,7 +22,7 @@ end
 module C = struct
   type t = Int32.t
 
-  let compare = Pervasives.compare
+  let compare = Stdlib.compare
   let equal a b = compare a b = 0
   let hash a = Int32.to_int a
 
